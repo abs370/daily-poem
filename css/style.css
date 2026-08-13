@@ -234,13 +234,19 @@ body {
   margin-right: 6px;
 }
 
-/* ===== 上一篇 / 下一篇 ===== */
+/* ===== 上一篇 / 今日 / 下一篇 + 跳转 ===== */
 .poem-nav {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  flex-direction: column;
+  gap: 10px;
   margin-top: 18px;
+  scroll-margin-bottom: 110px; /* 滚动定位时避开底部导航 */
+}
+
+.poem-nav-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .btn-nav {
@@ -251,12 +257,69 @@ body {
   background: var(--card);
   font-size: 14px;
   letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.btn-today {
+  color: var(--accent);
+  border-color: var(--accent-soft);
+  background: #faf3ec;
+  font-weight: 600;
 }
 
 .nav-counter {
   font-size: 12px;
   color: var(--ink-soft);
   white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.jump-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.jump-input {
+  width: 74px;
+  padding: 9px 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.jump-input::-webkit-outer-spin-button,
+.jump-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.jump-input:focus {
+  outline: 2px solid var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.btn-jump {
+  flex: 0 0 auto;
+  padding: 11px 18px;
+  color: var(--accent);
+  border-color: var(--accent-soft);
+  background: #faf3ec;
+  font-weight: 600;
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+  .btn-today,
+  .btn-jump {
+    background: #3a2f28;
+  }
 }
 
 /* ===== 历史 / 收藏列表 ===== */
