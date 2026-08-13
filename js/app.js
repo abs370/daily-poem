@@ -309,6 +309,9 @@
       favLabel: $("fav-label"),
       prevBtn: $("btn-prev"),
       nextBtn: $("btn-next"),
+      todayBtn: $("btn-today"),
+      jumpInput: $("jump-input"),
+      jumpBtn: $("btn-jump"),
       todayPanel: $("tab-today"),
       historyPanel: $("tab-history"),
       favsPanel: $("tab-favs"),
@@ -342,6 +345,31 @@
       var pos = POOL_POS[state.currentIndex];
       showPoem(POOL[(pos + 1) % POOL.length]);
       window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // 今日：返回当天推送的篇目（固定取当日篇目，而非最后浏览记录）
+    els.todayBtn.addEventListener("click", function () {
+      var index = POOL[dayIndex(dateStr())];
+      showPoem(index);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      toast("已回到今日篇目");
+    });
+
+    // 跳转：输入阅读池内篇号（1..N），直接打开
+    function doJump() {
+      var n = parseInt(els.jumpInput.value, 10);
+      if (isNaN(n) || n < 1 || n > POOL.length) {
+        toast("请输入 1 - " + POOL.length + " 之间的篇号");
+        els.jumpInput.focus();
+        return;
+      }
+      showPoem(POOL[n - 1]);
+      els.jumpInput.value = "";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    els.jumpBtn.addEventListener("click", doJump);
+    els.jumpInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") doJump();
     });
 
     // 底部 Tab
