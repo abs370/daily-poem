@@ -1,6 +1,6 @@
-/* 每日一诗 · Service Worker
+﻿/* 每日一诗 · Service Worker
  * 策略：预缓存核心资源 + stale-while-revalidate 运行时缓存，保证离线可用。 */
-const CACHE_NAME = "daily-poem-v4";
+const CACHE_NAME = "daily-poem-v5";
 const PRECACHE_ASSETS = [
   "./",
   "./index.html",
