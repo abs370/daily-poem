@@ -1,0 +1,417 @@
+/* ===== 每日一诗 · 全局 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f7f3e8;            /* 宣纸米色 */
+  --card: #fffdf6;
+  --ink: #3d3a33;           /* 墨色文字 */
+  --ink-soft: #8a8374;
+  --accent: #b03a2e;        /* 朱红 */
+  --accent-soft: #e8d9cf;
+  --line: #e5ddcc;
+  --radius: 16px;
+  --shadow: 0 2px 12px rgba(80, 60, 30, 0.08);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  min-height: 100vh;
+  padding-bottom: calc(72px + env(safe-area-inset-bottom));
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ===== 顶部 ===== */
+.app-header {
+  padding: 20px 20px 8px;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  text-indent: 6px;
+}
+
+.app-date {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 2px;
+}
+
+/* ===== 主内容 ===== */
+.app-main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 16px 104px;
+}
+
+.tab-panel {
+  animation: fade-in 0.25s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.panel-title {
+  font-size: 17px;
+  margin: 8px 0 12px;
+  padding-left: 10px;
+  border-left: 3px solid var(--accent);
+  letter-spacing: 2px;
+}
+
+/* ===== 诗词卡片 ===== */
+.poem-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 24px 24px;
+  scroll-margin-bottom: 96px; /* 滚动定位时避开底部导航 */
+}
+
+.poem-head {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.poem-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.poem-meta {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 2px;
+}
+
+.poem-content {
+  font-family: "Kaiti SC", "KaiTi", "STKaiti", "楷体", "Songti SC", serif;
+  font-size: 24px;
+  line-height: 2.1;
+  text-align: center;
+  padding: 10px 0 4px;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* 词/长诗句按自然断句换行 */
+.poem-content .poem-line {
+  display: block;
+}
+
+/* ===== 操作按钮 ===== */
+.poem-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-read,
+.btn-fav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #faf6ea;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.btn-read.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-fav.faved {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-icon {
+  font-size: 14px;
+}
+
+/* ===== 译文/注释/赏析 ===== */
+.poem-sections {
+  margin-top: 22px;
+  border-top: 1px dashed var(--line);
+  padding-top: 8px;
+}
+
+.poem-section {
+  border-bottom: 1px dashed var(--line);
+}
+
+.poem-section summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 4px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.poem-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.poem-section summary::after {
+  content: "＋";
+  color: var(--ink-soft);
+  font-weight: 400;
+  transition: transform 0.2s;
+}
+
+.poem-section[open] summary::after {
+  content: "－";
+}
+
+.poem-section p,
+.poem-section ul {
+  padding: 0 6px 16px;
+  font-size: 15px;
+  color: #5a554a;
+}
+
+.poem-section ul {
+  list-style: none;
+}
+
+.poem-section li {
+  padding: 2px 0;
+}
+
+.poem-section li::before {
+  content: "·";
+  color: var(--accent);
+  margin-right: 6px;
+}
+
+/* ===== 上一篇 / 下一篇 ===== */
+.poem-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.btn-nav {
+  flex: 1;
+  padding: 11px 0;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.nav-counter {
+  font-size: 12px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* ===== 历史 / 收藏列表 ===== */
+.list {
+  list-style: none;
+}
+
+.list li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.list li:active {
+  transform: scale(0.98);
+}
+
+.list .item-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.list .item-meta {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.list .item-tag {
+  font-size: 12px;
+  color: var(--accent);
+  border: 1px solid var(--accent-soft);
+  background: #faf3ec;
+  border-radius: 999px;
+  padding: 1px 10px;
+  white-space: nowrap;
+}
+
+.empty-tip {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 48px 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* ===== 底部导航 ===== */
+.bottom-tabs {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+  z-index: 10;
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+}
+
+.tab-btn .tab-icon {
+  font-size: 18px;
+  filter: grayscale(1) opacity(0.6);
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tab-btn.active .tab-icon {
+  filter: none;
+}
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 92px;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(40, 36, 28, 0.92);
+  color: #fff;
+  font-size: 13px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 20;
+  max-width: 80vw;
+  text-align: center;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== 深色模式 ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #201d18;
+    --card: #2a2620;
+    --ink: #e8e2d4;
+    --ink-soft: #9a9280;
+    --line: #3d382e;
+    --accent: #d96a5a;
+    --accent-soft: #4a3528;
+  }
+
+  .btn-read,
+  .btn-fav {
+    background: #322d25;
+  }
+
+  .poem-section p,
+  .poem-section ul {
+    color: #c9c2b2;
+  }
+
+  .list .item-tag {
+    background: #3a2f28;
+  }
+
+  .toast {
+    background: rgba(230, 224, 210, 0.92);
+    color: #2a2620;
+  }
+}
+
+/* ===== 窄屏适配 ===== */
+@media (max-width: 380px) {
+  .poem-content {
+    font-size: 21px;
+  }
+  .poem-card {
+    padding: 22px 16px 18px;
+  }
+}
