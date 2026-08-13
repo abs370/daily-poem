@@ -65,8 +65,9 @@ npx serve .
 
 ## 数据说明
 
-- **数据来源**：[chinese-poetry](https://github.com/chinese-poetry/chinese-poetry)（MIT License）《唐诗三百首》《宋词三百首》原文，经繁体转简体处理
-- **精读篇目**：50 首经典诗词附白话译文、字词注释与赏析（`js/data.js` 中带 `translation` 字段的条目）
+- **数据来源**：[chinese-poetry](https://github.com/chinese-poetry/chinese-poetry)（MIT License）《唐诗三百首》《宋词三百首》原文（繁转简处理）；译文/注释/赏析来自[古诗文网](https://www.gushiwen.cn)（gushiwen 开源数据集，yht050511/gushiwen，MIT License）及 gushicionline/tangPoems300
+- **覆盖情况**：661 首中 **614 首（93%）配有白话译文、字词注释与赏析**；其余 47 首为古籍冷门篇目（数据源未收录译文），仅显示原文
+- **精读篇目**：50 首经典诗词附人工编写的译文/注释/赏析（以 `translation` 字段为准，优先于外部数据）
 - **小学篇目剔除**：`js/data.js` 中的 `window.SCHOOL_POEMS` 数组维护小学语文课本（部编版 1-6 年级）及课标必背篇目清单（格式 `作者|标题`），应用启动时据此构建阅读池。如需恢复某篇，从该数组中删除对应条目即可
 
 ## 自定义诗词集
