@@ -55,9 +55,18 @@
       </article>
 
       <nav class="poem-nav">
-        <button class="btn btn-nav" id="btn-prev" type="button">← 上一篇</button>
-        <span class="nav-counter" id="nav-counter"></span>
-        <button class="btn btn-nav" id="btn-next" type="button">下一篇 →</button>
+        <div class="poem-nav-row">
+          <button class="btn btn-nav" id="btn-prev" type="button">← 上一篇</button>
+          <button class="btn btn-nav btn-today" id="btn-today" type="button">🏠 今日</button>
+          <button class="btn btn-nav" id="btn-next" type="button">下一篇 →</button>
+        </div>
+        <div class="poem-nav-row jump-row">
+          <span class="nav-counter" id="nav-counter"></span>
+          <label class="jump-label" for="jump-input">跳转到第</label>
+          <input class="jump-input" id="jump-input" type="number" min="1" max="600" inputmode="numeric" placeholder="篇号">
+          <label class="jump-label" for="jump-input">篇</label>
+          <button class="btn btn-nav btn-jump" id="btn-jump" type="button">跳转</button>
+        </div>
       </nav>
     </section>
 
