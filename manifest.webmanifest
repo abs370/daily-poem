@@ -1,0 +1,17 @@
+{
+  "name": "每日一诗 · 古诗词阅读",
+  "short_name": "每日一诗",
+  "description": "每天一篇古诗词，附译文、注释与赏析，支持语音朗读与收藏。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f3e8",
+  "theme_color": "#f7f3e8",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
