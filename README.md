@@ -14,6 +14,12 @@
 
 ## 使用方式
 
+### 在线访问
+
+已部署在 GitHub Pages，手机浏览器直接打开：
+
+**https://abs370.github.io/daily-poem/**
+
 ### 本地预览
 
 ```powershell
